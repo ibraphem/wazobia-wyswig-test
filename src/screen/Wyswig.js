@@ -2,14 +2,17 @@ import { useState } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { saveEditor } from "../redux/slices/editorSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BiPlus } from "react-icons/bi";
 import Actions from "../components/Actions";
+import { setShowDropdown } from "../redux/slices/modalSlice";
 
 
 const Wyswig = () => {
     const dispatch = useDispatch()
     const [showActions, setShowActions] = useState(false)
+    const showDropdown = useSelector((state) => state.modal?.showDropdown?.status);
+
     return (
         <div className="App">
         <div className="main">
@@ -20,12 +23,12 @@ const Wyswig = () => {
             onReady={(editor) => dispatch(saveEditor(editor))}
           />
           <div style={{ position: "relative" }}>
-            <button className="append">
-              <BiPlus size="15px" onClick={() => setShowActions(!showActions)} />
+            <button className="append" onClick={() => dispatch(setShowDropdown({status: !showDropdown}))}>
+              <BiPlus size="15px"/>
             </button>
 
             {/* Actions */}
-            {showActions && (
+            {showDropdown && (
                <Actions/>
             )}
           </div>

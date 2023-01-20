@@ -1,13 +1,16 @@
 import React from 'react';
 import { HiPhotograph } from "react-icons/hi";
 import { BsCameraVideoFill, BsFillPersonFill } from "react-icons/bs";
+import { useDispatch } from 'react-redux';
+import { setImageUploadModal, setShowDropdown } from '../redux/slices/modalSlice';
 
 const Actions = () => {
+    const dispatch = useDispatch()
     return (
         <div className="embeds">
         <h3>EMBEDS</h3>
         <ul>
-          <li>
+          <li onClick={() => {dispatch(setShowDropdown({status: false})); dispatch(setImageUploadModal({status: true}))}}>
             <HiPhotograph size="17px" style={{ marginTop: "2px" }} />
             <div>
               <p>Picture</p>
