@@ -368,3 +368,13 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+
+@media only screen and (min-width: 275px) and (max-width: 767px) {
+  .App {
+    width: 95%;
+  }
+  .img-modal, .vid-modal, .social-modal{
+    width: 80vw;
+  }
+}
