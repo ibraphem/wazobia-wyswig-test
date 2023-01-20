@@ -2,15 +2,20 @@ import React from 'react';
 import { HiPhotograph } from "react-icons/hi";
 import { BsCameraVideoFill, BsFillPersonFill } from "react-icons/bs";
 import { useDispatch } from 'react-redux';
-import { setImageUploadModal, setShowDropdown, setVideoLinkModal } from '../redux/slices/modalSlice';
+import { setImageUploadModal, setShowDropdown, setSocialModal, setVideoLinkModal } from '../redux/slices/modalSlice';
+import { useOutsideClick } from '../hooks/useOutsideClick';
 
 const Actions = () => {
     const dispatch = useDispatch()
+    const onOutsideClick = () => {
+      dispatch(setShowDropdown({status: false}))
+    }
+    const ref = useOutsideClick(onOutsideClick);
     return (
-        <div className="embeds">
+        <div className="embeds" ref={ref}>
         <h3>EMBEDS</h3>
         <ul>
-          <li onClick={() => {dispatch(setShowDropdown({status: false})); dispatch(setImageUploadModal({status: true}))}}>
+          <li onClick={() => {dispatch(setImageUploadModal({status: true}))}}>
             <HiPhotograph size="17px" style={{ marginTop: "2px" }} />
             <div>
               <p>Picture</p>
@@ -24,7 +29,7 @@ const Actions = () => {
               <span>JW player, Youtube, Vimeo</span>
             </div>
           </li>
-          <li>
+          <li onClick={() => {dispatch(setShowDropdown({status: false})); dispatch(setSocialModal({status: true}))}}>
             <BsFillPersonFill size="17px" style={{ marginTop: "2px" }} />
             <div>
               <p>Social</p>

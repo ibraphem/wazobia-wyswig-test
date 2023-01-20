@@ -10,6 +10,11 @@ export const modalSlice = createSlice({
     videoLinkModal: {
       status: false,
     }, 
+
+    socialModal: {
+      status: false,
+    }, 
+
     showDropdown: {
       status: false,
     },
@@ -25,6 +30,13 @@ export const modalSlice = createSlice({
       state.videoLinkModal = {
         status: payload.status,
       };
+      
+    },
+    setSocialModal: (state, { payload }) => {
+      state.socialModal = {
+        status: payload.status,
+      };
+      
     },
     setShowDropdown: (state, { payload }) => {
       state.showDropdown = {
@@ -34,5 +46,5 @@ export const modalSlice = createSlice({
   },
 });
 
-export const { setImageUploadModal, setShowDropdown, setVideoLinkModal } = modalSlice.actions;
+export const { setImageUploadModal, setShowDropdown, setVideoLinkModal, setSocialModal } = modalSlice.actions;
 export default modalSlice.reducer;

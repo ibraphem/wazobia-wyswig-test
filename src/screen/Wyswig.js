@@ -14,11 +14,12 @@ const Wyswig = () => {
     const editor = useSelector((state) => state?.editor?.editor);
 
     const onOutsideClick = () => {
-        dispatch(setShowDropdown({status: false}))
-        editor.editing.view.focus()
+        editor?.editing?.view?.focus()
     }
 
     const ref = useOutsideClick(onOutsideClick);
+
+
 
     return (
         <div className="App">
@@ -27,10 +28,11 @@ const Wyswig = () => {
           {/* <h1 className="title">This is the title</h1> */}
           <CKEditor
             editor={ClassicEditor}
-            onReady={(editor) => dispatch(saveEditor(editor))}
+            autoFocus
+            onReady={(editor) => {dispatch(saveEditor(editor)); editor?.editing?.view?.focus()}} 
           />
           <div style={{ position: "relative" }}>
-            <button className="append" ref={ref} onClick={() => dispatch(setShowDropdown({status: !showDropdown}))}>
+            <button className="append" onClick={() => dispatch(setShowDropdown({status: !showDropdown}))}>
               <BiPlus size="15px"/>
             </button>
 

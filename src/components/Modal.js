@@ -2,7 +2,10 @@
 const Modal = ({ children, isOpen, closeModal }) => {
     if (!isOpen) return null
     const closeModalFromBg = (e) => {
-        if (e.target.id === 'bg') closeModal()
+      e.stopPropagation();
+        if (e.target.id === 'bg') {
+          closeModal()
+        }
     }
   return (
     <div

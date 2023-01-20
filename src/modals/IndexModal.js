@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageUploadModal from './ImageUploadModal';
+import SocialModal from './SocialModal';
 import VideoLinkModal from './VideoLinkModal';
 
 const IndexModal = () => {
@@ -7,6 +8,7 @@ const IndexModal = () => {
         <>
            <ImageUploadModal/> 
            <VideoLinkModal/>
+           <SocialModal/>
         </>
     );
 };

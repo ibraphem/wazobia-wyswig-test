@@ -24,11 +24,9 @@ const ImageUploadModal = () => {
     );
   };
 
-  console.log(image);
 
   const embed = () => {
     formatImage(image, async (uri) => {
-      console.log(uri);
       dispatch(
         uploadImage({
           payload: {
@@ -40,6 +38,7 @@ const ImageUploadModal = () => {
         editor.execute("insertImage", {
           source: res?.payload?.data?.data?.secure_url,
         });
+        setImage("")
         closeModal();
       });
     });
@@ -52,11 +51,12 @@ const ImageUploadModal = () => {
         <p style={{ fontSize: "12px", fontWeight: "bold" }}>Upload Image</p>
         <p style={{ fontSize: "10px" }}>FILE UPLOAD</p>
         <div className="dashed-box">
-          {/* <input type="file" className="custom-file-input" onChange={(e) => setImage(e.target.files[0])}/> */}
           <label className="custom-file-upload">
             <input type="file" onChange={(e) => setImage(e.target.files[0])}/>
             Import Image from Device
           </label>
+      
+          {image && <span style={{marginLeft: 10, fontSize: 12}}>{image?.name}</span>}
         </div>
         <div className="">
           <button
