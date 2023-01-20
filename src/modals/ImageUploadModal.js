@@ -7,15 +7,12 @@ import { formatImage } from "../utils/format";
 import { uploadImage } from "../redux/slices/uploadSlice";
 
 const ImageUploadModal = () => {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const dispatch = useDispatch();
 
   const editor = useSelector((state) => state?.editor?.editor);
   const loading = useSelector((state) => state.upload?.loading);
   const imageUploadModal = useSelector((state) => state.modal?.imageUploadModal);
-
-  console.log(image);
-
 
   const closeModal = () => {
     dispatch(
@@ -24,6 +21,8 @@ const ImageUploadModal = () => {
       })
     );
   };
+
+  console.log(image);
 
   const embed = () => {
     formatImage(image, async (uri) => {
@@ -51,7 +50,7 @@ const ImageUploadModal = () => {
         <p style={{ fontSize: "12px", fontWeight: "bold" }}>Upload Image</p>
         <p style={{ fontSize: "10px" }}>FILE UPLOAD</p>
         <div className="dashed-box">
-          <input type="file" onChange={(e) => setImage(e.target.files[0])}/>
+          <input type="file" className="custom-file-input" onChange={(e) => setImage(e.target.files[0])}/>
         </div>
         <div className="">
           <button onClick={embed} disabled={image === "" || loading}  className="img-modal-button embed">{loading ? "Embedding..." : "Embed"}</button>

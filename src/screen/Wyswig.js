@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { saveEditor } from "../redux/slices/editorSlice";
@@ -10,7 +9,6 @@ import { setShowDropdown } from "../redux/slices/modalSlice";
 
 const Wyswig = () => {
     const dispatch = useDispatch()
-    const [showActions, setShowActions] = useState(false)
     const showDropdown = useSelector((state) => state.modal?.showDropdown?.status);
 
     return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { HiPhotograph } from "react-icons/hi";
 import { BsCameraVideoFill, BsFillPersonFill } from "react-icons/bs";
 import { useDispatch } from 'react-redux';
-import { setImageUploadModal, setShowDropdown } from '../redux/slices/modalSlice';
+import { setImageUploadModal, setShowDropdown, setVideoLinkModal } from '../redux/slices/modalSlice';
 
 const Actions = () => {
     const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const Actions = () => {
               <span>Jpeg, png</span>
             </div>
           </li>
-          <li>
+          <li onClick={() => {dispatch(setShowDropdown({status: false})); dispatch(setVideoLinkModal({status: true}))}}>
             <BsCameraVideoFill size="17px" style={{ marginTop: "2px" }} />
             <div>
               <p>Video</p>
