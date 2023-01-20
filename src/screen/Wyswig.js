@@ -5,19 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { BiPlus } from "react-icons/bi";
 import Actions from "../components/Actions";
 import { setShowDropdown } from "../redux/slices/modalSlice";
-import { useOutsideClick } from "../hooks/useOutsideClick";
-
 
 const Wyswig = () => {
     const dispatch = useDispatch()
     const showDropdown = useSelector((state) => state.modal?.showDropdown?.status);
     const editor = useSelector((state) => state?.editor?.editor);
 
-    const onOutsideClick = () => {
-        editor?.editing?.view?.focus()
-    }
-
-    const ref = useOutsideClick(onOutsideClick);
 
 
 
