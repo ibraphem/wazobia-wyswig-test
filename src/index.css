@@ -74,6 +74,10 @@ code {
   background-color: #FAFAFA;
 }
 
+.ck-editor__editable:not(.ck-read-only) .ck-widget_selected .ck-media__wrapper>:not(.ck-media__placeholder) {
+  pointer-events: initial  !important;
+}
+
 .embeds{
   width: 250px;
   /* height: 170px; */
@@ -170,10 +174,27 @@ code {
   justify-content: center;align-items: center;
  }
 
- .custom-file-input::-webkit-file-upload-button {
-  visibility: hidden !important;
+ input[type="file"] {
+  display: none;
 }
 
+.custom-file-upload {
+  display: inline-block;
+  background-color: inherit;
+  border: 1px solid #6CAA7D;
+  border-radius: 4px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-size: 10px;
+}
+
+ .custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
 .custom-file-input::before {
   content: 'Import image from device';
   display: inline-block;
@@ -196,11 +217,12 @@ code {
 }
 
 
+
 .img-modal-button{
   outline: none;
   border-radius: 4px;
   height: 35px;
-  width: 62px;
+  min-width: 62px;
   margin:10px 10px 10px auto;
 }
 
@@ -213,6 +235,12 @@ code {
 .img-modal-button.cancel{
   background-color: white;
   border: 1px solid #CEE3D4;
+}
+
+.img-modal-button.embed:disabled,
+.img-modal-button.embed[disabled]{
+  opacity: 0.5;
+  cursor: not-allowed
 }
 
 .ck.ck-editor__editable.ck-blurred .ck-widget.ck-widget_selected, .ck.ck-editor__editable.ck-blurred .ck-widget.ck-widget_selected:hover{
@@ -324,6 +352,12 @@ input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
+}
+
+.ck-sticky-panel .ck-toolbar {
+  border-bottom-width: 0;
+  border-left-width: 0 !important;
+  border-right-width: 0 !important;
 }
 
 /* Rounded sliders */

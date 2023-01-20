@@ -7,12 +7,14 @@ import { formatImage } from "../utils/format";
 import { uploadImage } from "../redux/slices/uploadSlice";
 
 const ImageUploadModal = () => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const dispatch = useDispatch();
 
   const editor = useSelector((state) => state?.editor?.editor);
   const loading = useSelector((state) => state.upload?.loading);
-  const imageUploadModal = useSelector((state) => state.modal?.imageUploadModal);
+  const imageUploadModal = useSelector(
+    (state) => state.modal?.imageUploadModal
+  );
 
   const closeModal = () => {
     dispatch(
@@ -50,10 +52,20 @@ const ImageUploadModal = () => {
         <p style={{ fontSize: "12px", fontWeight: "bold" }}>Upload Image</p>
         <p style={{ fontSize: "10px" }}>FILE UPLOAD</p>
         <div className="dashed-box">
-          <input type="file" className="custom-file-input" onChange={(e) => setImage(e.target.files[0])}/>
+          {/* <input type="file" className="custom-file-input" onChange={(e) => setImage(e.target.files[0])}/> */}
+          <label className="custom-file-upload">
+            <input type="file" onChange={(e) => setImage(e.target.files[0])}/>
+            Import Image from Device
+          </label>
         </div>
         <div className="">
-          <button onClick={embed} disabled={image === "" || loading}  className="img-modal-button embed">{loading ? "Embedding..." : "Embed"}</button>
+          <button
+            onClick={embed}
+            disabled={image === "" || loading}
+            className="img-modal-button embed"
+          >
+            {loading ? "Embedding..." : "Embed"}
+          </button>
           <button onClick={closeModal} className="img-modal-button cancel">
             Cancel
           </button>

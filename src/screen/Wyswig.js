@@ -5,11 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { BiPlus } from "react-icons/bi";
 import Actions from "../components/Actions";
 import { setShowDropdown } from "../redux/slices/modalSlice";
+import { useOutsideClick } from "../hooks/useOutsideClick";
 
 
 const Wyswig = () => {
     const dispatch = useDispatch()
     const showDropdown = useSelector((state) => state.modal?.showDropdown?.status);
+    const editor = useSelector((state) => state?.editor?.editor);
+
+    const onOutsideClick = () => {
+        dispatch(setShowDropdown({status: false}))
+        editor.editing.view.focus()
+    }
+
+    const ref = useOutsideClick(onOutsideClick);
 
     return (
         <div className="App">
@@ -21,7 +30,7 @@ const Wyswig = () => {
             onReady={(editor) => dispatch(saveEditor(editor))}
           />
           <div style={{ position: "relative" }}>
-            <button className="append" onClick={() => dispatch(setShowDropdown({status: !showDropdown}))}>
+            <button className="append" ref={ref} onClick={() => dispatch(setShowDropdown({status: !showDropdown}))}>
               <BiPlus size="15px"/>
             </button>
 
