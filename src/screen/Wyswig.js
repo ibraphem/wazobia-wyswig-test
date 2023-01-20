@@ -9,10 +9,6 @@ import { setShowDropdown } from "../redux/slices/modalSlice";
 const Wyswig = () => {
     const dispatch = useDispatch()
     const showDropdown = useSelector((state) => state.modal?.showDropdown?.status);
-    const editor = useSelector((state) => state?.editor?.editor);
-
-
-
 
     return (
         <div className="App">

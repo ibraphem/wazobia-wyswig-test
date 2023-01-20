@@ -1,4 +1,4 @@
-import Resizer from "./resizer";
+import Resizer from "react-image-file-resizer";
 
 export const formatImage = (image, callbackFunc) => {
     let fileInput = false;

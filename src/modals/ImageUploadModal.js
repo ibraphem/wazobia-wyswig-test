@@ -52,7 +52,7 @@ const ImageUploadModal = () => {
         <p style={{ fontSize: "10px" }}>FILE UPLOAD</p>
         <div className="dashed-box">
           <label className="custom-file-upload">
-            <input type="file" onChange={(e) => setImage(e.target.files[0])}/>
+            <input type="file" accept="image/png, image/jpg, image/jpeg" onChange={(e) => setImage(e.target.files[0])}/>
             Import Image from Device
           </label>
       
